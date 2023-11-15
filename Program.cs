@@ -11,6 +11,9 @@ using static System.Net.WebRequestMethods;
 using System.Net.Http;
 using System.Xml.Linq;
 using System.Security.Cryptography.X509Certificates;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
+using File = System.IO.File;
 
 namespace WebScraper
 {
@@ -121,8 +124,19 @@ namespace WebScraper
                 WeatherInfos.Add(weatherInfo);
             }
 
-            using (var writer = new StreamWriter("brunswick-weatherinfo.csv"))
+            using (var writer = new StreamWriter(@"C:\Users\JosephUser\C#\WebScraper\WebScraper\bin\Debug\brunswick-weatherinfo.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(WeatherInfos);
+            }
+
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = false
+            };
+            using (var stream = File.Open(@"C:\Users\JosephUser\C#\WebScraper\WebScraper\bin\Debug\brunswick-weatherinfo.csv", FileMode.Append))
+            using (var writer = new StreamWriter(stream))
+            using (var csv = new CsvWriter(writer, config))
             {
                 csv.WriteRecords(WeatherInfos);
             }
