@@ -124,11 +124,11 @@ namespace WebScraper
                 WeatherInfos.Add(weatherInfo);
             }
 
-            using (var writer = new StreamWriter(@"C:\Users\JosephUser\C#\WebScraper\WebScraper\bin\Debug\brunswick-weatherinfo.csv"))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-            {
-                csv.WriteRecords(WeatherInfos);
-            }
+            //using (var writer = new StreamWriter(@"C:\Users\JosephUser\C#\WebScraper\WebScraper\bin\Debug\brunswick-weatherinfo.csv"))
+            //using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            //{
+            //    csv.WriteRecords(WeatherInfos);
+            //}
 
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
